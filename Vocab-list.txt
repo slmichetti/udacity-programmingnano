@@ -1,0 +1,49 @@
+Programming Vocabulary 
+
+HTTP: Hypertext Transfer Protocol
+HTML: Hypertext Markup Language
+Syntax: Grammar rules of a language. Computer languages have grammar rules too - rules for how you put your code together
+Formalism (aka Computers are stupid) Computers take code literally. Word for word. It can only do what you tell it to do.
+Nesting (aspecgt of Syntax) how some bits of code go inside other bits of code in an orderly way. 
+Typographic elements: Used to say the browswer should display text in a different way
+
+
+
+HTML ELEMENTS
+<em> and <strong> — Emphasis.
+By default, text inside <em> is displayed as italic, and text in <strong> is displayed as boldface.
+
+<p> — Paragraph.
+Text in a paragraph is separated visually from other paragraphs by a small margin.
+
+<br> — Line break. (empty)
+A line break does not create a new paragraph; it only marks the end of a line.
+
+<sub> and <sup> — Superscript and subscript.
+Useful for math and chemistry: I have x3+2x2 molecules of H2O.
+
+<mark> — Highlighting.  Not very often used, but it's kind of cool.
+
+
+VOID OR EMPTY ELEMENTS
+<br>
+
+Block Elements
+	Used for large sections of text (paragraphs, headlines, lists, video players, tables)
+	Creates a box in the browser display; default it takes up the full width of the display
+	Most have a particular way they are displayed, except div, which was no defaults
+
+Inline Elements
+	Do not create a full width box
+	They modify the display of text, or insert other things into the text (line breaks, iamges, links)
+	Some require attributes (extra info besides the name of the element itsefl)
+		Attributes are written inside the opening tag of the element
+			img - images. Needs a src attribute with a URL, and an alt attribute with descriptive text
+			a - hyperlinks. Needs an href attribute with a URL.
+Images
+	URL for an image can be absolute URL (must have http:// or https://) or a relative URL like images/bears.jpg
+	alt text is used if the image cant be loaded
+
+Links
+	Created using the a element
+	Destination of the link is written in a attirbute called href; the link text appears as the contents of the a element
