@@ -1,0 +1,163 @@
+HTML Overview Notes
+
+The Web and HTML
+
+	The web is a hypertext system - a form of test in which documents can refer (link) to other documents and resources.
+		Hypertext is also used whenever a web page uses an image, document or video
+
+	Servers have programs running on them that answer to a browsers request
+
+	Links can be to documents on the same or different servers
+
+	Web Browswers and servers interact in a specific way
+		Browswer - request by name - server sends back that specific document (or an error message if it cant be found)
+			The rules for how requests/responses work is called HTTP (Hypertext Transfer Protocol)
+		HTML (HyperText Markup Language) Language used to provide the structure and text for web pages
+
+	Text files contain letters, numbers, spaces, punctuation. No color, images or videos inside them. HTML is written in text. 
+		Text editors have syntax editing, which applies colors to help you apply the grammar correctly while you're editing
+
+
+The Job of HTML
+	HTML docs are the building blocks of the web
+
+	HTML is made up of:
+		Text that the user will actually read in their browswer
+		Markup - which tells the browser what the text should look like, how its arranged. 
+			Within Markup there can be:
+				References to include other documents and files, like images and videos
+
+	Markup is text that has a special meaning.
+		<word> word inside the symbols = tag </word>
+		whole unit with two matching tags = element
+		Every element always starts and ends with a tag.  The end always has the /
+		First tag = opening (or start) tag
+		Second tag = closing
+		Tags always start and end with angle brackets (less than and greater than signs)
+			Opening and closing is critical
+
+	Whitespace includes spaces, tabs, and line breaks. When the browser displays an HTML file, it treats a run of whitespace as a single space character. In order to create a line break that will show up in the browser, use the <br> tag.
+
+	Elements that dont have closing tags are called "Void Elements" or "Empty Elements"
+
+	Paragraph Tag <p></p>
+		To make a paragraph in html, use the p element <p>
+
+	Typographic elements
+		Used to say the browswer should display text in a different way
+		<mark></mark>
+		sub and sup stand for "subscript" and "superscript". 
+		<sub>
+		<sup>
+
+	Nested Elements
+		Something can be "nested" inside something else. Elements on an html page can go inside other elements, but it does follow some basic rules.
+			A <p> can have <em> elements inside of it.
+				Paragraph or big divisions can contain smaller elements. 
+			There are some combos that dont work. You cant put a <p> inside another <p> and two different HTML elements cant overlap. one must be inside the other. 
+	
+	Headings
+		There are six heading elements, h1 through h6. Heading elements typically create a little bit of space (margin) around themselves.
+
+	Inline Elements
+		Block-level elements — https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements#Elements
+
+		Inline elements — https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements#Elements
+
+		The <br> tag is used only to end a line. Break the line here
+		<p> doesn't just contain the text; it tells the browser to create an invisible box around the text - called a BLOCK. it has a height/width and a margin above/below it- creating the space around the paragraph.
+		The p element is called a BLOCK ELEMENT. Specifically meant to contain text. Has a border, margin, width, height, etc. 
+		Elements that dont create a block are called INLINE ELEMENTS
+
+	The Div Element
+		the div (short for division) 
+		block element
+		generic container for whatever elements you want to put inside it. 
+		used to organize the content and divide a page into sections
+
+	Some elements are always meant to be used inside dother elements and cannot stand on its own
+	    Example: Lists
+			<li> - list item. Will always be part of a list.
+				- can be part of an ordered list (with letters or numbers) <ol>
+			 	- unordered list (bullets or dots) <ul>
+			 Lists cant stand on its own
+			 ol and ul lists are displayed differently - without that context, the browser doesn't know how to display it. So li can only occur inside an ol or ul.
+			 Lists can be nested inside other lists (ex of an outline or task list)
+
+		 Shortcut: HTML doesn't require closing tags for li elements b/c it can never occur inside another li (only in ol or ul). Your choice to use closing tags on the <li>. Closing tags are required in <ol> and <ul>
+
+	Web Addresses
+		Used whenever you add an image or link in your html
+		Web address is called a Uniform Resource Locator (URL) Tells your browser how to locate a particular resource
+
+		When writing URLs in html, need to give all information to the browswer - a fully qualifed URL
+			Fully qualified form: 
+				Starts with http or https or file on local drive will start with file
+				After the protocal always will see a ://
+				Domain Name for web url or file url will have the computer location
+				File Path - can sometimes be empty or /
+
+	Links and the <a> Tag
+		Creating links in HTML - element is called <a> (stands for anchor b/c the a element anchors the link to the text on the page)
+		<a> cannot be used by itself.
+			href= the name
+			"url" is the value
+			combined they are the attribute
+		Contents of the a element become the text that appears on the page
+		Closing tag - attributes only go in the opening tag
+
+		<a href="https://en.wikipedia.org/wiki/Hypertext">
+  			Wikipedia's "Hypertext" article
+		</a>
+
+	Images
+		<img> element uses two attirbutes src and alt
+			src = source; the url for the image you want to appear in your web page
+			alt = an alternate description; text that will show up in place of your image
+				tells the browser what text to show if it cant display the image
+		the alt and src are attirbutes of the element
+		an inline element
+		<img src="Image URL here" alt="A description of the image">
+
+		Websites like placebear.com and placekitten.com are designed to make this super easy. All you have to do to get an image of any given size is put the width and height of the image at the end of the URL, as in https://placebear.com/200/300.
+		find other similar sites by doing a search for "image placeholder" 
+
+		Notice that the list items in this design are also hyperlinks! And if you click on one of them, it will open in a new browser tab. If you want to do this in your own links, you can add the attribute target="_blank" to the a element. Like this:
+
+<a href="https://example.com/" target="_blank">Example</a>
+
+	Nesting Images with Hyperlinks
+		<a href="https://google.com"><img src="glogo.png" alt="Google!"></a>
+
+	Files and Relative URLs
+		When the image resides in the same folder as your html, you can just reference the file name for image source, and the browser knows to look in that same directory.
+
+		Local directory references wont work from computer to computer; but if you pass that image along with your html, you can use a relative file
+
+Completing HTML Document
+	Identifying what type of document it is
+		Indicate what kind of html by putting a tag at the top of the page - a <!DOCTYPE html> tag
+	Added to the top of EVERY html document you write
+	It tells the browser to treat this page as modern html; without it, it will go into quirks mode while trying to be compatible with older html types
+
+A full HTML doc has two parts
+	Head - where certain pieces of importat pieces about the document (the administrative stuff)
+		Title is the only required part of hte head. Tells the browser what title to put in the tab of the browser
+			<title>Name</title>
+		Style sheet information
+		Scripts - that run in the browser
+		Metadata - other info about the page itself (keywords for search engines for ex)
+		Can also specify items to the html, such as language
+	
+	Body - the contents of the document
+
+Basic HTML Page structure
+	A head element
+	The doctype
+	A title element
+	An html element
+	A body element
+
+
+
+
