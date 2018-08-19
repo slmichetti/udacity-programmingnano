@@ -1,0 +1,47 @@
+body {
+	font-family: tahoma, geneva, sans-serif;
+	font-size: 14px;
+	width: 326px;
+	}
+
+div ul {
+	padding: 0;
+	}
+
+li {
+	list-style: none;
+	}
+
+h3 {
+	font-size: 1.5em;
+	padding-bottom: 20px;
+	margin: 0;
+	}
+
+.container {
+	padding: 10px;
+	border: 2px solid #dcdcdc;
+	padding-top: 20px;
+	box-shadow: 5px 5px #dcdcdc;
+	}
+
+.round-corners {
+		border-radius: 15px;
+	}
+
+.info {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #dcdcdc;
+	padding: 5px 10px 10px 10px;
+	margin-top: 15px;
+	}
+
+.facts {
+	font-style: italic;
+	}
+
+.label {
+	font-weight: bold;
+	}
+
