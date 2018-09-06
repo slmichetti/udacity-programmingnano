@@ -3,6 +3,9 @@
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
 
+#import random module for random.choice element
+import random
+
 moves = ['rock', 'paper', 'scissors']
 
 """The Player class is the parent class for all of the Players
@@ -16,6 +19,10 @@ class Player:
     def learn(self, my_move, their_move):
         pass
 
+#create a player subclass that plays randomly
+class RandomPlayer(Player):
+    def move(self):
+        return random.choice(moves)
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
@@ -44,5 +51,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(Player(), Player())
+    game = Game(Player(), RandomPlayer())
     game.play_game()
