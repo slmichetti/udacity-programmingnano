@@ -51,5 +51,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(Player(), RandomPlayer())
+    game = Game(RandomPlayer(), RandomPlayer())
     game.play_game()
