@@ -11,7 +11,7 @@ moves = ['rock', 'paper', 'scissors']
 """The Player class is the parent class for all of the Players
 in this game"""
 
-
+#Main player - only move is rock
 class Player:
     def move(self):
         return 'rock'
@@ -34,6 +34,9 @@ class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
+        self.p1wins = 0 #keeps track of number of wins player one
+        self.p2wins = 0 #of wins player two
+        self.ties = 0 #of tie games
 
     def play_round(self):
         move1 = self.p1.move()
@@ -41,15 +44,34 @@ class Game:
         print(f"Player 1: {move1}  Player 2: {move2}")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
+        #determine who wins
+        x = beats(move1, move2) #pass in moves from round to run through beats to determine winner
+            # if move1 is
+        if x == True:
+                #add to score and print stats
+            self.p1wins += 1
+            print(f"Player One wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+        #if p1 did not beat p2, reverse inputs to run p2 moves against p1 moves (if true, p2 wins, if false its a tie)
+        elif x == False:
+            y = beats(move2, move1)
+            if y == True:
+                self.p2wins += 1
+                print(f"Player Two wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+            #if neither returns true, its a tie (WORKING)
+            else:
+                self.ties += 1
+                print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+
 
     def play_game(self):
-        print("Game start!")
-        for round in range(3):
+        print("Prepare for battle!")
+        for round in range(1, 4): #when choosing number of rounds for round in range(1,3)
             print(f"Round {round}:")
             self.play_round()
-        print("Game over!")
+        print(f"Game over! Final score: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
 
 
 if __name__ == '__main__':
     game = Game(RandomPlayer(), RandomPlayer())
     game.play_game()
+
