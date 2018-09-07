@@ -57,7 +57,7 @@ class Game:
             if y == True:
                 self.p2wins += 1
                 print(f"Player Two wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
-            #if neither returns true, its a tie (WORKING)
+            #if neither returns true, its a tie 
             else:
                 self.ties += 1
                 print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
