@@ -37,6 +37,7 @@ class Game:
         self.p1wins = 0 #keeps track of number of wins player one
         self.p2wins = 0 #of wins player two
         self.ties = 0 #of tie games
+#       self.learn[]
 
     def play_round(self):
         move1 = self.p1.move()
@@ -45,22 +46,18 @@ class Game:
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
         #determine who wins
-        x = beats(move1, move2) #pass in moves from round to run through beats to determine winner
-            # if move1 is
-        if x == True:
-                #add to score and print stats
+        if beats(move1, move2): #pass in moves from round to run through beats to determine winner
+            #add to score and print stats
             self.p1wins += 1
             print(f"Player One wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
         #if p1 did not beat p2, reverse inputs to run p2 moves against p1 moves (if true, p2 wins, if false its a tie)
-        elif x == False:
-            y = beats(move2, move1)
-            if y == True:
-                self.p2wins += 1
-                print(f"Player Two wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
-            #if neither returns true, its a tie 
-            else:
-                self.ties += 1
-                print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+        elif beats(move2, move1):
+            self.p2wins += 1
+            print(f"Player Two wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+        #if neither returns true, its a tie 
+        else:
+            self.ties += 1
+            print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
 
 
     def play_game(self):
