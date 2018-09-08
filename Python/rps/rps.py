@@ -86,7 +86,9 @@ class Game:
             print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
 
     def play_game(self):
-        print("Prepare for battle!")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
         # when choosing number of rounds for round in range(1,3)
         for round in range(1,4):
             print(f"Round {round}:")
