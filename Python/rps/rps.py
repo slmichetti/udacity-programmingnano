@@ -9,46 +9,62 @@ import random
 moves = ['rock', 'paper', 'scissors']
 
 
-# Player class, but this player always plays "rock".  #All subclass players inherit from this class.
+# Player class. This main player always plays "rock"
+# All subclass players inherit from this class
 class Player:
+    # Initializes the player class and creates random previous moves
+    def __init__(self):
+        self.own_previous_move = random.choice(moves)
+        self.opponents_last_move = random.choice(moves)
+
     def move(self):
         return 'rock'
 
+    # Used to update the previous moves for the player and opponent
     def learn(self, my_move, their_move):
-        pass
+        self.own_previous_move = my_move
+        self.opponents_last_move = their_move
 
 
-# create a computer player subclassthat plays randomly
+# Create a computer player subclassthat plays randomly
 class RandomPlayer(Player):
     def move(self):
         return random.choice(moves)
 
-# create a computer player that remembers opponent's lsat move
-# class ReflectPlayer(Player):
-#    def learn(self, my_move, their_move):
-#        pass
 
-# create a subclass for comupter player that remembers last move and cycles through the remaining moves
-# class CyclePlayer(Player):
-#    def learn(self, my_move):
-        # cycle through moves based on last move
-#        pass
-
-# create a subclass for a Human Player
+# Subclass for a Human Player
 class HumanPlayer(Player):
     def move(self):
-        #player chooses move from list. 
+        # Player chooses move from list
         HumanPlayer_move = ""
-        
+
         while True:
             HumanPlayer_move = input("Choose your weapon: rock, paper or scissors\n").lower()
-            #if player's answer is incorrect or not found, prompted to enter a new move
+            # Incorrect response - prompted to enter a new move
             if HumanPlayer_move.lower() not in moves:
-                print("Oops, you picked a weapon that is not a part of this game. Try again")
+                print("Oops, I don't recognize that weapon. Try again")
             else:
-                break 
-        
+                break
+
         return HumanPlayer_move
+
+
+# Subclass player that copies the opponent's last move
+class ReflectPlayer(Player):
+    # Call def learn for opponent's last move
+    def move(self):
+        return self.opponents_last_move
+
+
+# Subclass player -remembers last move and cycles through  moves
+class CyclePlayer(Player):
+    # Call def learn to get last move to cycle through list
+    def move(self):
+        index = moves.idex(self.own_previous_move)
+        if index == 2:
+            return moves[0]
+        else:
+            return moves[index+1]
 
 
 def beats(one, two):
@@ -75,29 +91,32 @@ class Game:
         if beats(move1, move2):
             # add to score and print stats
             self.p1wins += 1
-            print(f"Player One wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
-        # if p1 did not beat p2, reverse inputs to run p2 moves against p1 moves (if true, p2 wins, if false its a tie)
+            print("Player One wins!")
+        # Reverse inputs to determine if its a tie
         elif beats(move2, move1):
             self.p2wins += 1
-            print(f"Player Two wins! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
-        # if neither returns true, its a tie
+            print("Player Two wins!")
         else:
             self.ties += 1
-            print(f" It's a tie! Game Totals: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
+            print("It's a tie!")
 
     def play_game(self):
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-        # when choosing number of rounds for round in range(1,3)
+        # Identify round in range
         for round in range(1,4):
             print(f"Round {round}:")
             self.play_round()
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~~~~ GAME OVER! ~~~~~~~~~~~~~~~~~~~~")
-        print(f"Final score: Player One: {self.p1wins}, Player Two: {self.p2wins}, Ties: {self.ties}")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+        print("Final score:")
+        print(f"Player One: {self.p1wins}")
+        print(f"Player Two: {self.p2wins},")
+        print(f"Ties: {self.ties}")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), ReflectPlayer())
     game.play_game()
