@@ -92,14 +92,26 @@ class Game:
             # add to score and print stats
             self.p1wins += 1
             print("Player One wins!")
+            print("Game Totals:")
+            print(  f" You: {self.p1wins}")
+            print(  f" Computer: {self.p2wins}")
+            print(  f" Ties: {self.ties}")
         # Reverse inputs to determine if its a tie
         elif beats(move2, move1):
             self.p2wins += 1
             print("Player Two wins!")
+            print("Game Totals:")
+            print(  f" You: {self.p1wins}")
+            print(  f" Computer: {self.p2wins}")
+            print(  f" Ties: {self.ties}")
         else:
             self.ties += 1
             print("It's a tie!")
-
+            print("Game Totals:")
+            print(  f" You: {self.p1wins}")
+            print(  f" Computer: {self.p2wins}")
+            print(  f" Ties: {self.ties}")
+            
     def play_game(self):
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
@@ -112,7 +124,7 @@ class Game:
         print("~~~~~~~~~~~~~~~~~~~~ GAME OVER! ~~~~~~~~~~~~~~~~~~~~")
         print("Final score:")
         print(f"Player One: {self.p1wins}")
-        print(f"Player Two: {self.p2wins},")
+        print(f"Player Two: {self.p2wins}")
         print(f"Ties: {self.ties}")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
