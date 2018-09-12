@@ -15,7 +15,7 @@ class Player:
     def move(self):
         return 'rock'
 
-    def learn(self, my_last_move, opponents_last_move):
+    def learn(self, my_move, their_move):
         pass
 
 
@@ -107,6 +107,49 @@ class Game:
         self.p1wins = 0
         self.p2wins = 0
         self.ties = 0
+        self.rounds = 0
+        
+    # Human Player picks number of rounds to play
+    def ask_rounds(self):
+        rounds = ""
+        while True:
+            rounds = int(input("Enter the number of rounds you would like to play: "))
+            #check for valid number
+            if rounds <= 0:
+                print ("Please pick a valid number:  ")
+            elif rounds >9:
+                print ("Max number of rounds is 9. Please pick again:  ") 
+            else:
+                break 
+
+        return rounds
+        self.rounds = rounds
+
+    #player input choose opponent
+    def choose_opponent(self):
+        
+        opponent_choice = ""
+        while True:
+            opponent_choice = input("Please choose your opponent."
+            "[1] Rocker: an opponent who rocks out on every move."
+            "[2] Suprise: you never know what move this opponent will make."
+            "[3] Mockingbird: this opponent will mimic your last move."
+            "[4] Cyclist: for an opponent that moves in cycles through the moves."
+            "Enter your choice now: ")
+            if input == 1:
+                self.p2 = Player()
+                break
+            elif input == 2:
+                self.p2 = RandomPlayer()
+                break
+            elif input == 3:
+                self.p2 = ReflectPlayer()
+                break
+            elif input == 4:
+                self.p2 = CyclePlayer()
+                break
+            else: print("I'm sorry. I didnt understand, please try again.")
+
 
     # Prints winner for the round and totals for wins and ties
     def keep_score(self, move1, move2):
@@ -158,19 +201,7 @@ class Game:
     # Starts the beginning of the game
     def play_game(self):
 
-        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-        # Identify round in range
-        for round in range(1, 8):
-            print(f"Round {round}: ")
-            self.play_round()
-        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        self.show_final_score()
-
-    # Welcome to the game
-    def welcome(self):
-        option = input(
+        print(
             "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             "\n~~   WELCOME TO ROCK, PAPER, SCISSORS, LIZARD, SPOCK!     ~~"
             "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -181,16 +212,33 @@ class Game:
             "\n     ~ Lizard eats Paper and poisons Spock."
             "\n     ~ Paper disproves Spock and covers Rock."
             "\n     ~ Spock vaporizes Rock and smashes Scissors."
-            "\n~~ The best of 7 rounds WINS the game!"
-            "\n~~ Ready to play? Type yes or q to quit.")
-        if option == 'yes' or option == 'y':
-            self.play_game()
-        elif option == 'n':
-            print("Ok. Come back to play again soon!")
-        else:
-            print("I didn't understand your response. Try again.")
+            "\n "
+            "\n~~ Let's get ready to play!")
+        ready = input("Are you ready? Type yes to play, or quit to exit.")
+        while True:
+            if ready == 'yes':
+                self.ask_rounds()
+            elif ready != 'yes' or option != 'q':
+                print("I am not sure what you want to do. Try again.")
+            else:
+                print("Ok. Come back to play later!")
+            break
+        print(
+            "\n ~~~~~ Choose Your Opponent. ~~")
+        self.choose_opponent
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+        # Identify round in range from value in count_rounds
+        self.ask_rounds
+        self.rounds = rounds 
+        for round in rounds:
+            print(f"Round {round}: ")
+            self.play_round()
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        self.show_final_score()
 
 
 if __name__ == '__main__':
     game = Game(Human(), RandomPlayer())
-    game.welcome()
+    game.play_game()
