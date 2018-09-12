@@ -111,46 +111,46 @@ class Game:
         
     # Human Player picks number of rounds to play
     def ask_rounds(self):
-        num_rounds = ""
         while True:
-            num_rounds = int(input("Enter the number of rounds you would like to play: "))
+            num_rounds = int(input(
+                "Enter the number of rounds you would like to play: "))
             print(f"Cool! Let's play {num_rounds} rounds!")
+            break
             #check for valid number
             if num_rounds <= 0:
                 print ("Please pick a valid number:  ")
             elif num_rounds > 9:
                 print ("Max number of rounds is 9. Please pick again:  ") 
             else:
-                break 
+                print("I don't know that number. Please try again.")
 
         return num_rounds
         self.rounds = num_rounds
 
     #player input choose opponent
     def choose_opponent(self):
-        
-        opponent_choice = ""
+        print(
+        "\n~~~~~~~~~~~~~~~~~~~~~CHOOSE YOUR OPPONENT~~~~~~~~~~~~~~~~~~~~~"
+        "\n[1] Rocker: rocks out on every move."
+        "\n[2] Suprise: you never know what move this opponent will make."
+        "\n[3] Mockingbird: mimics your last move."
+        "\n[4] Cyclist: moves in cycles through the moves."
+        "\n ")
         while True:
-            opponent_choice = input("Please choose your opponent."
-            "[1] Rocker: an opponent who rocks out on every move."
-            "[2] Suprise: you never know what move this opponent will make."
-            "[3] Mockingbird: this opponent will mimic your last move."
-            "[4] Cyclist: for an opponent that moves in cycles through the moves."
-            "Enter your choice now: ")
-            if input == 1:
+            opponent_choice = (input("Enter your choice now: "))
+            if opponent_choice == "1":
                 self.p2 = Player()
                 break
-            elif input == 2:
+            elif opponent_choice == "2":
                 self.p2 = RandomPlayer()
                 break
-            elif input == 3:
+            elif opponent_choice == "3":
                 self.p2 = ReflectPlayer()
                 break
-            elif input == 4:
+            elif opponent_choice == "4":
                 self.p2 = CyclePlayer()
                 break
             else: print("I'm sorry. I didnt understand, please try again.")
-
 
     # Prints winner for the round and totals for wins and ties
     def keep_score(self, move1, move2):
@@ -227,7 +227,7 @@ class Game:
         self.ask_rounds()
         print(
             "\n ~~~~~ Choose Your Opponent. ~~")
-        self.choose_opponent
+        self.choose_opponent()
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
