@@ -111,19 +111,20 @@ class Game:
         
     # Human Player picks number of rounds to play
     def ask_rounds(self):
-        rounds = ""
+        num_rounds = ""
         while True:
-            rounds = int(input("Enter the number of rounds you would like to play: "))
+            num_rounds = int(input("Enter the number of rounds you would like to play: "))
+            print(f"Cool! Let's play {num_rounds} rounds!")
             #check for valid number
-            if rounds <= 0:
+            if num_rounds <= 0:
                 print ("Please pick a valid number:  ")
-            elif rounds >9:
+            elif num_rounds > 9:
                 print ("Max number of rounds is 9. Please pick again:  ") 
             else:
                 break 
 
-        return rounds
-        self.rounds = rounds
+        return num_rounds
+        self.rounds = num_rounds
 
     #player input choose opponent
     def choose_opponent(self):
@@ -214,25 +215,24 @@ class Game:
             "\n     ~ Spock vaporizes Rock and smashes Scissors."
             "\n "
             "\n~~ Let's get ready to play!")
-        ready = input("Are you ready? Type yes to play, or quit to exit.")
         while True:
-            if ready == 'yes':
-                self.ask_rounds()
-            elif ready != 'yes' or option != 'q':
-                print("I am not sure what you want to do. Try again.")
+            ready = input("Are you ready? Type yes to play, or quit to exit.")
+            if ready == 'yes' or ready == 'y':
+                break             
+            elif ready == 'quit':
+                print("Ok. Come back when you're ready to play")
+                break
             else:
-                print("Ok. Come back to play later!")
-            break
+                print("I am not sure what you want to do. Try again.")
+        self.ask_rounds()
         print(
             "\n ~~~~~ Choose Your Opponent. ~~")
         self.choose_opponent
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-        # Identify round in range from value in count_rounds
         self.ask_rounds
-        self.rounds = rounds 
-        for round in rounds:
+        for round in range(self.rounds):
             print(f"Round {round}: ")
             self.play_round()
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
