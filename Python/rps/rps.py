@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-"""This program plays a game of Rock, Paper, Scissors between two Players,
-and reports both Player's scores each round."""
+"""This program plays a game of Rock, Paper, Scissors. Lizard, Spock
+between two Players, and reports both Player's scores each round."""
 
 # import random module for random.choice element
 import random
@@ -11,6 +11,8 @@ affirmatives = ['yes', 'yea', 'yep', 'y', 'sure']
 negatives = ['n', 'no', 'nope', 'nay']
 
 # Creates main Player class. All subclass players inherit from this class
+
+
 class Player:
     # Player always returns move rock
     def move(self):
@@ -69,6 +71,7 @@ class Human(Player):
     If the response is not found in the list of moves,it gives an error and
     asks for input again.
     """
+
     def move(self):
         Human_move = ""
 
@@ -109,37 +112,37 @@ class Game:
         self.p2wins = 0
         self.ties = 0
         self.rounds = 0
-        
+
     # Human Player picks number of rounds to play
     def ask_rounds(self):
         while True:
             num_rounds = input(
                 "Enter the number of rounds you would like to play: ")
-            #check for valid number
+            # check for valid number
             if num_rounds.isnumeric():
                 num_rounds = int(num_rounds)
                 if num_rounds <= 0:
-                    print ("Please pick a valid number:  ")
+                    print("Please pick a valid number:  ")
                 elif num_rounds > 9:
-                    print ("Max number of rounds is 9. Please pick again:  ") 
+                    print("Max number of rounds is 9. Please pick again:  ")
                 else:
                     print(f"Cool! Let's play {num_rounds} rounds!\n")
                     self.rounds = num_rounds
                     break
             else:
-                print("I don't know that number. Please try again.")      
+                print("I don't know that number. Please try again.")
 
     def draw_separator(self):
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-    #player input choose opponent
+    # player input choose opponent
     def choose_opponent(self):
         print(
-        "~~~~~~~~~~~~~~~~~~~~~CHOOSE YOUR OPPONENT~~~~~~~~~~~~~~~~~~~~~"
-        "\n [1] Rocker: rocks out on every move." 
-        "\n [2] Suprise: you never know what move this opponent will make."
-        "\n [3] Mockingbird: mimics your last move."
-        "\n [4] Cyclist: moves in cycles through the moves.\n")
+            "~~~~~~~~~~~~~~~~~~~~~CHOOSE YOUR OPPONENT~~~~~~~~~~~~~~~~~~~~~"
+            "\n [1] Rocker: rocks out on every move."
+            "\n [2] Suprise: you never know what move this opponent will make."
+            "\n [3] Mockingbird: mimics your last move."
+            "\n [4] Cyclist: moves in cycles through the moves.\n")
         while True:
             opponent_choice = (input("Enter your choice now: "))
             if opponent_choice == "1":
@@ -154,8 +157,8 @@ class Game:
             elif opponent_choice == "4":
                 self.p2 = CyclePlayer()
                 break
-            else: print("I'm sorry. I didnt understand, please try again.")
-
+            else:
+                print("I'm sorry. I didnt understand, please try again.")
 
     # Prints winner for the round and totals for wins and ties
     def keep_score(self, move1, move2):
@@ -199,7 +202,6 @@ class Game:
         print(f"Player Two: {self.p2wins}")
         print(f"Ties: {self.ties}")
         self.draw_separator()
-        
 
     # Defines the moves played in the round
     def play_round(self):
@@ -230,7 +232,7 @@ class Game:
         while True:
             ready = input("Are you ready (Y/N)? ").lower()
             if ready.lower() in affirmatives:
-                break             
+                break
             elif ready.lower() in negatives:
                 print("Ok. Come back when you're ready to play")
                 return
@@ -242,7 +244,7 @@ class Game:
         self.draw_separator()
         print("                 PREPARE FOR BATTLE! ")
         self.draw_separator()
-        for round in range(0, self.rounds):  
+        for round in range(0, self.rounds):
             print(f"Round {round+1}: ")
             self.play_round()
         self.draw_separator()
@@ -252,4 +254,3 @@ class Game:
 if __name__ == '__main__':
     game = Game(Human(), RandomPlayer())
     game.play_game()
-
