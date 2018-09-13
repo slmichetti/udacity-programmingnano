@@ -123,7 +123,7 @@ class Game:
                 elif num_rounds > 9:
                     print ("Max number of rounds is 9. Please pick again:  ") 
                 else:
-                    print(f"Cool! Let's play {num_rounds} rounds!")
+                    print(f"Cool! Let's play {num_rounds} rounds!\n")
                     self.rounds = num_rounds
                     break
             else:
@@ -134,13 +134,12 @@ class Game:
 
     #player input choose opponent
     def choose_opponent(self):
-        print('''
-            ~~~~~~~~~~~~~~~~~~~~~CHOOSE YOUR OPPONENT~~~~~~~~~~~~~~~~~~~~~"
-            [1] Rocker: rocks out on every move. 
-            [2] Suprise: you never know what move this opponent will make.
-            [3] Mockingbird: mimics your last move.
-            [4] Cyclist: moves in cycles through the moves.
-            ''')
+        print(
+        "~~~~~~~~~~~~~~~~~~~~~CHOOSE YOUR OPPONENT~~~~~~~~~~~~~~~~~~~~~"
+        "\n [1] Rocker: rocks out on every move." 
+        "\n [2] Suprise: you never know what move this opponent will make."
+        "\n [3] Mockingbird: mimics your last move."
+        "\n [4] Cyclist: moves in cycles through the moves.\n")
         while True:
             opponent_choice = (input("Enter your choice now: "))
             if opponent_choice == "1":
@@ -190,15 +189,16 @@ class Game:
         # Show final score of the game
         print("~~~~~~~~~~~~~~~~~~~~ GAME OVER! ~~~~~~~~~~~~~~~~~~~~")
         if self.p1wins > self.p2wins:
-            print("PLAYER ONE WINS!!")
+            print("*****PLAYER ONE WINS!!*****")
         elif self.p2wins > self.p1wins:
-            print("PLAYER TWO WINS!!")
+            print("*****PLAYER TWO WINS!!*****")
         else:
             print("There is no winner. Games were tied!")
         print("Final score:")
         print(f"Player One: {self.p1wins}")
         print(f"Player Two: {self.p2wins}")
         print(f"Ties: {self.ties}")
+        self.draw_separator()
         
 
     # Defines the moves played in the round
@@ -216,17 +216,17 @@ class Game:
 
         self.draw_separator()
         print(
-            "\n~~   WELCOME TO ROCK, PAPER, SCISSORS, LIZARD, SPOCK!     ~~")
+            "  WELCOME TO ROCK, PAPER, SCISSORS, LIZARD, SPOCK!      ")
         self.draw_separator()
         print(
-            "~~ Your moves: Rock, Paper, Scissors, Lizard or Spock. ~~"
+            "Your moves: Rock, Paper, Scissors, Lizard or Spock.\n"
             "\n   Rules of the game:"
             "\n     ~ Rock crushers Scissors and Lizard."
             "\n     ~ Scissors cut Paper and decapitate Lizard."
             "\n     ~ Lizard eats Paper and poisons Spock."
             "\n     ~ Paper disproves Spock and covers Rock."
-            "\n     ~ Spock vaporizes Rock and smashes Scissors."
-            "\n " )
+            "\n     ~ Spock vaporizes Rock and smashes Scissors.\n")
+        self.draw_separator()
         while True:
             ready = input("Are you ready (Y/N)? ").lower()
             if ready.lower() in affirmatives:
@@ -238,16 +238,14 @@ class Game:
                 print("I am not sure what you want to do. Try again.")
 
         self.ask_rounds()
-        print(
-            "\n ~~~~~ Choose Your Opponent. ~~")
         self.choose_opponent()
-        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print("~~~~~~~~~~~~~~~~ PREPARE FOR BATTLE! ~~~~~~~~~~~~~~~~")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+        self.draw_separator()
+        print("                 PREPARE FOR BATTLE! ")
+        self.draw_separator()
         for round in range(0, self.rounds):  
             print(f"Round {round+1}: ")
             self.play_round()
-        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        self.draw_separator()
         self.show_final_score()
 
 
